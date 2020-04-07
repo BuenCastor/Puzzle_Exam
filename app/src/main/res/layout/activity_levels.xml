@@ -8,81 +8,6 @@
     tools:context=".LevelsActivity">
 
 
-    <Button
-        android:id="@+id/ButtonLevel_1"
-        android:layout_width="85dp"
-        android:layout_height="76dp"
-        android:background="@drawable/gradient1"
-        android:bottomLeftRadius="30dp"
-        android:bottomRightRadius="30dp"
-        android:onClick="Level_1"
-        android:text="1"
-        android:textColor="#FFFFFF"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.224"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.255"
-        tools:ignore="OnClick" />
-
-    <Button
-        android:id="@+id/ButtonLevel_2"
-        android:layout_width="85dp"
-        android:layout_height="76dp"
-        android:background="@drawable/gradient1"
-        android:bottomLeftRadius="30dp"
-        android:bottomRightRadius="30dp"
-        android:onClick="Level_2"
-        android:text="2"
-        android:textColor="#FFFFFF"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.808"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.256"
-        tools:ignore="OnClick" />
-
-    <Button
-        android:id="@+id/ButtonLevel_3"
-        android:layout_width="85dp"
-        android:layout_height="76dp"
-        android:background="@drawable/gradient1"
-        android:bottomLeftRadius="30dp"
-        android:bottomRightRadius="30dp"
-        android:text="3"
-        android:textColor="#FFFFFF"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.224"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499"
-        tools:ignore="OnClick" />
-
-    <Button
-        android:id="@+id/ButtonLevel_4"
-        android:layout_width="85dp"
-        android:layout_height="76dp"
-        android:background="@drawable/gradient1"
-        android:bottomLeftRadius="30dp"
-        android:bottomRightRadius="30dp"
-        android:onClick="Level_4"
-        android:text="4"
-        android:textColor="#FFFFFF"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.808"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499"
-        tools:ignore="OnClick" />
-
     <TextView
         android:id="@+id/textView4"
         android:layout_width="127dp"
@@ -108,4 +33,161 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.077"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ScrollView
+        android:layout_width="391dp"
+        android:layout_height="507dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.143">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/ButtonLevel_1"
+                android:layout_width="85dp"
+                android:layout_height="76dp"
+                android:background="@drawable/gradient1"
+                android:bottomLeftRadius="30dp"
+                android:bottomRightRadius="30dp"
+                android:onClick="Level_1"
+                android:text="1"
+                android:textColor="#FFFFFF"
+                android:textSize="36sp"
+                tools:ignore="OnClick"
+                android:layout_marginLeft="100dp"/>
+
+            <Button
+                android:id="@+id/ButtonLevel_2"
+                android:layout_width="85dp"
+                android:layout_height="76dp"
+                android:background="@drawable/gradient1"
+                android:bottomLeftRadius="30dp"
+                android:bottomRightRadius="30dp"
+                android:onClick="Level_2"
+                android:text="2"
+                android:textColor="#FFFFFF"
+                android:textSize="36sp"
+                tools:ignore="OnClick"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="250dp"/>
+
+            <Button
+                android:id="@+id/ButtonLevel_3"
+                android:layout_width="85dp"
+                android:layout_height="76dp"
+                android:background="@drawable/gradient1"
+                android:bottomLeftRadius="30dp"
+                android:bottomRightRadius="30dp"
+                android:text="3"
+                android:textColor="#FFFFFF"
+                android:textSize="36sp"
+                tools:ignore="OnClick"
+                android:layout_marginLeft="100dp"/>
+
+            <Button
+                android:id="@+id/ButtonLevel_4"
+                android:layout_width="85dp"
+                android:layout_height="76dp"
+                android:background="@drawable/gradient1"
+                android:bottomLeftRadius="30dp"
+                android:bottomRightRadius="30dp"
+                android:onClick="Level_4"
+                android:text="4"
+                android:textColor="#FFFFFF"
+                android:textSize="36sp"
+                tools:ignore="OnClick"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="250dp"/>
+            <Button
+                android:id="@+id/ButtonLevel_5"
+                android:layout_width="85dp"
+                android:layout_height="76dp"
+                android:background="@drawable/gradient1"
+                android:bottomLeftRadius="30dp"
+                android:bottomRightRadius="30dp"
+                android:onClick="Level_1"
+                android:text="5"
+                android:textColor="#FFFFFF"
+                android:textSize="36sp"
+                tools:ignore="OnClick"
+                android:layout_marginLeft="100dp"/>
+
+            <Button
+                android:id="@+id/ButtonLevel_6"
+                android:layout_width="85dp"
+                android:layout_height="76dp"
+                android:background="@drawable/gradient1"
+                android:bottomLeftRadius="30dp"
+                android:bottomRightRadius="30dp"
+                android:onClick="Level_2"
+                android:text="6"
+                android:textColor="#FFFFFF"
+                android:textSize="36sp"
+                tools:ignore="OnClick"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="250dp"/>
+
+            <Button
+                android:id="@+id/ButtonLevel_7"
+                android:layout_width="85dp"
+                android:layout_height="76dp"
+                android:background="@drawable/gradient1"
+                android:bottomLeftRadius="30dp"
+                android:bottomRightRadius="30dp"
+                android:text="7"
+                android:textColor="#FFFFFF"
+                android:textSize="36sp"
+                tools:ignore="OnClick"
+                android:layout_marginLeft="100dp"/>
+
+            <Button
+                android:id="@+id/ButtonLevel_8"
+                android:layout_width="85dp"
+                android:layout_height="76dp"
+                android:background="@drawable/gradient1"
+                android:bottomLeftRadius="30dp"
+                android:bottomRightRadius="30dp"
+                android:onClick="Level_4"
+                android:text="8"
+                android:textColor="#FFFFFF"
+                android:textSize="36sp"
+                tools:ignore="OnClick"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="250dp"/>
+            <Button
+                android:id="@+id/ButtonLevel_9"
+                android:layout_width="85dp"
+                android:layout_height="76dp"
+                android:background="@drawable/gradient1"
+                android:bottomLeftRadius="30dp"
+                android:bottomRightRadius="30dp"
+                android:text="9"
+                android:textColor="#FFFFFF"
+                android:textSize="36sp"
+                tools:ignore="OnClick"
+                android:layout_marginLeft="100dp"/>
+
+            <Button
+                android:id="@+id/ButtonLevel_10"
+                android:layout_width="85dp"
+                android:layout_height="76dp"
+                android:background="@drawable/gradient1"
+                android:bottomLeftRadius="30dp"
+                android:bottomRightRadius="30dp"
+                android:onClick="Level_4"
+                android:text="10"
+                android:textColor="#FFFFFF"
+                android:textSize="36sp"
+                tools:ignore="OnClick"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="250dp"/>
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
