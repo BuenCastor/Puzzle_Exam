@@ -1,6 +1,7 @@
 package com.example.puzzleexam;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
@@ -26,24 +27,16 @@ public class LevelActivity1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level1);
 
-     //   final ConstraintLayout layout1 = findViewById(R.id.layout1);
-        final RelativeLayout layout = findViewById(R.id.layout);
+      final RelativeLayout layout = findViewById(R.id.layout);
         ImageView imageView = findViewById(R.id.photo1);
 
-        // запускаем связанный с изображением код после того, как представление было выложено
-        // рассчитать все размеры
+        // run image related code after the view was laid out
+        // to have all dimensions calculated
         imageView.post(new Runnable() {
-            @SuppressLint("ClickableViewAccessibility")
             @Override
             public void run() {
                 pieces = splitImage();
                 TouchListener touchListener = new TouchListener();
-//                for (Bitmap piece: pieces){
-//                    ImageView iv = new ImageView(getApplicationContext());
-//                    iv.setImageBitmap(piece);
-//                    iv.setOnTouchListener(touchListener);
-//                    layout.addView(iv);
-//                }
                 for(PuzzlePiece piece : pieces) {
                     piece.setOnTouchListener(touchListener);
                     layout.addView(piece);
@@ -52,42 +45,41 @@ public class LevelActivity1 extends AppCompatActivity {
         });
     }
 
-    private ArrayList <PuzzlePiece> splitImage() {
-        int piecesNumber = 12;         // частей пазла
+    private ArrayList<PuzzlePiece> splitImage() {
+        int piecesNumber = 12;
         int rows = 4;
         int cols = 3;
 
         ImageView imageView = findViewById(R.id.photo1);
         ArrayList<PuzzlePiece> pieces = new ArrayList<>(piecesNumber);
 
-        // Получить растровое изображение исходного изображения
+        // Get the scaled bitmap of the source image
         BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
         Bitmap bitmap = drawable.getBitmap();
 
-        int [] sizes = getBitmapPositionInsideImageView(imageView);
-        int scaleBitmapLeft = sizes [0];
-        int scaleBitmapTop = sizes [1];
-        int scaleBitmapWidth = sizes [2];
-        int scaleBitmapHeight = sizes [3];
+        int[] dimensions = getBitmapPositionInsideImageView(imageView);
+        int scaledBitmapLeft = dimensions[0];
+        int scaledBitmapTop = dimensions[1];
+        int scaledBitmapWidth = dimensions[2];
+        int scaledBitmapHeight = dimensions[3];
 
-        int croppedImageWidth = scaleBitmapWidth - 2 * Math.abs(scaleBitmapLeft);
-        int croppedImageHeight = scaleBitmapHeight - 2 * Math.abs(scaleBitmapTop);
+        int croppedImageWidth = scaledBitmapWidth - 2 * Math.abs(scaledBitmapLeft);
+        int croppedImageHeight = scaledBitmapHeight - 2 * Math.abs(scaledBitmapTop);
 
-        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap,scaleBitmapWidth,scaleBitmapHeight,true);
-        Bitmap croppedBitmap = Bitmap.createBitmap(scaledBitmap, Math.abs(scaleBitmapLeft),Math.abs(scaleBitmapTop),
-                croppedImageWidth,croppedImageHeight);
+        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, scaledBitmapWidth, scaledBitmapHeight, true);
+        Bitmap croppedBitmap = Bitmap.createBitmap(scaledBitmap, Math.abs(scaledBitmapLeft), Math.abs(scaledBitmapTop),
+                croppedImageWidth, croppedImageHeight);
 
-        // Рассчитать ширину и высоту кусков
-        int pieceWidth = croppedImageWidth  / cols;
-        int pieceHeight = croppedImageHeight / rows;
+        // Calculate the with and height of the pieces
+        int pieceWidth = croppedImageWidth/cols;
+        int pieceHeight = croppedImageHeight/rows;
 
-        // Создаем каждый фрагмент растрового изображения и добавляем его в результирующий массив
+        // Create each bitmap piece and add it to the resulting array
         int yCoord = 0;
-        for(int row = 0; row < rows; row++){
+        for (int row = 0; row < rows; row++) {
             int xCoord = 0;
-            for(int col = 0; col < cols; col++){
-              //  pieces.add(Bitmap.createBitmap(bitmap,xCoord,yCoord,pieceWidth,pieceHeight));
-               // Bitmap pieceBitmap = Bitmap.createBitmap(croppedBitmap, xCoord, yCoord, pieceWidth, pieceHeight);
+            for (int col = 0; col < cols; col++) {
+                // calculate offset for each piece
                 int offsetX = 0;
                 int offsetY = 0;
                 if (col > 0) {
@@ -101,10 +93,7 @@ public class LevelActivity1 extends AppCompatActivity {
                 Bitmap pieceBitmap = Bitmap.createBitmap(croppedBitmap, xCoord - offsetX, yCoord - offsetY, pieceWidth + offsetX, pieceHeight + offsetY);
                 PuzzlePiece piece = new PuzzlePiece(getApplicationContext());
                 piece.setImageBitmap(pieceBitmap);
-//                piece.xCoord = xCoord + imageView.getLeft();
-//                piece.yCoord = yCoord + imageView.getTop();
-//                piece.pieceWidth = pieceWidth;
-//                piece.pieceHeight = pieceHeight;
+
                 piece.xCoord = xCoord - offsetX + imageView.getLeft();
                 piece.yCoord = yCoord - offsetY + imageView.getTop();
                 piece.pieceWidth = pieceWidth + offsetX;
@@ -188,46 +177,47 @@ public class LevelActivity1 extends AppCompatActivity {
             }
             yCoord += pieceHeight;
         }
-        return  pieces;
+
+        return pieces;
     }
 
-    private int [] getBitmapPositionInsideImageView (ImageView imageView){
-        int [] ret = new int [4];
+    private int[] getBitmapPositionInsideImageView(ImageView imageView) {
+        int[] ret = new int[4];
 
-        if(imageView == null || imageView.getDrawable() == null)
+        if (imageView == null || imageView.getDrawable() == null)
             return ret;
 
-        // Получить размеры изображения
-        // Получить значения матрицы изображения и поместить их в массив
-        float [] f = new float [9];
+        // Get image dimensions
+        // Get image matrix values and place them in an array
+        float[] f = new float[9];
         imageView.getImageMatrix().getValues(f);
 
-        // Извлекаем значения масштаба, используя константы (если соотношение сторон сохранено, scaleX == scaleY)
+        // Extract the scale values using the constants (if aspect ratio maintained, scaleX == scaleY)
         final float scaleX = f[Matrix.MSCALE_X];
         final float scaleY = f[Matrix.MSCALE_Y];
 
-        // Получить отрисовку (также можно получить растровое изображение за отрисовкой и getWidth / getHeight)
+        // Get the drawable (could also get the bitmap behind the drawable and getWidth/getHeight)
         final Drawable d = imageView.getDrawable();
         final int origW = d.getIntrinsicWidth();
         final int origH = d.getIntrinsicHeight();
 
-        //Расчет фактических размеров
-        final int actW = Math.round(origW*scaleX);
-        final int actH = Math.round(origH* scaleY);
+        // Calculate the actual dimensions
+        final int actW = Math.round(origW * scaleX);
+        final int actH = Math.round(origH * scaleY);
 
-        ret [2] = actW;
-        ret [3] = actH;
+        ret[2] = actW;
+        ret[3] = actH;
 
-        //Получить положение изображения
-        // Мы предполагаем, что изображение центрировано в ImageView
+        // Get image position
+        // We assume that the image is centered into ImageView
         int imgViewW = imageView.getWidth();
         int imgViewH = imageView.getHeight();
 
-        int top = (int) (imgViewH - actH) / 2;
-        int left = (int) (imgViewW - actW) / 2;
+        int top = (int) (imgViewH - actH)/2;
+        int left = (int) (imgViewW - actW)/2;
 
-        ret [0] = left;
-        ret [1] = top;
+        ret[0] = left;
+        ret[1] = top;
 
         return ret;
     }

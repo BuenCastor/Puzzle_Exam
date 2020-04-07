@@ -2,29 +2,27 @@ package com.example.puzzleexam;
 
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.RelativeLayout;
-
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 import static java.lang.StrictMath.abs;
-import static java.lang.StrictMath.abs;
 
-public class TouchListener implements View.OnTouchListener{
-    private  float xDelta;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+
+public class TouchListener implements View.OnTouchListener {
+    private float xDelta;
     private float yDelta;
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         float x = motionEvent.getRawX();
-        float y = motionEvent.getY();
+        float y = motionEvent.getRawY();
         final double tolerance = sqrt(pow(view.getWidth(), 2) + pow(view.getHeight(), 2)) / 10;
 
         PuzzlePiece piece = (PuzzlePiece) view;
         if (!piece.canMove) {
             return true;
         }
-
         RelativeLayout.LayoutParams lParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
         switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
             case MotionEvent.ACTION_DOWN:
@@ -52,7 +50,6 @@ public class TouchListener implements View.OnTouchListener{
 
         return true;
     }
-
     public void sendViewToBack(final View child) {
         final ViewGroup parent = (ViewGroup)child.getParent();
         if (null != parent) {

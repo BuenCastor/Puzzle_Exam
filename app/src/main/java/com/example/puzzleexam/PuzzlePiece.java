@@ -12,7 +12,6 @@ public class PuzzlePiece extends AppCompatImageView {
     public boolean canMove = true;
 
     public PuzzlePiece(Context context) {
-
         super(context);
     }
 }
